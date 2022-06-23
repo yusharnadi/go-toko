@@ -12,9 +12,10 @@ type productService struct {
 
 type ProductService interface {
 	Insert(CreateProductRequest model.CreateProductRequest) (entity.Product, error)
+	GetAll() ([]entity.Product, error)
 }
 
-func NewProductService(productRepository repository.ProductRepository) *productService {
+func NewProductService(productRepository repository.ProductRepository) ProductService {
 	return &productService{productRepository}
 }
 
@@ -27,4 +28,11 @@ func (s *productService) Insert(CreateProductRequest model.CreateProductRequest)
 
 	newProduct, err := s.productRepository.Insert(product)
 	return newProduct, err
+}
+
+func (s *productService) GetAll() ([]entity.Product, error) {
+	var products []entity.Product
+
+	products, err := s.productRepository.GetAll()
+	return products, err
 }
