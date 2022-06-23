@@ -8,6 +8,7 @@ import (
 type ProductRepository interface {
 	Insert(product *entity.Product) error
 	GetAll() (*[]entity.Product, error)
+	FindId(id int) (entity.Product, error)
 }
 
 type productRepository struct {
@@ -26,5 +27,11 @@ func (r *productRepository) Insert(product *entity.Product) error {
 func (r *productRepository) GetAll() (*[]entity.Product, error) {
 	var product *[]entity.Product
 	err := r.db.Find(&product)
+	return product, err.Error
+}
+
+func (r *productRepository) FindId(id int) (entity.Product, error) {
+	var product entity.Product
+	err := r.db.Find(&product, id)
 	return product, err.Error
 }
