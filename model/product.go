@@ -1,10 +1,9 @@
 package model
 
 type CreateProductRequest struct {
-	ID    uint64 `json:"id"`
-	Name  string `json:"name"`
-	Price int    `json:"price"`
-	Stock int    `json:"stock"`
+	Name  string `form:"name"`
+	Price int    `form:"price"`
+	Stock int    `form:"stock"`
 }
 
 type CreateProductResponse struct {
