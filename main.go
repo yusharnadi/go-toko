@@ -17,4 +17,7 @@ func main() {
 
 	// Setup repository
 	// productRepository := repository.NewProductRepository(db)
+
+	//setup Service
+	//  productService := service.NewProductService(productRepository)
 }
