@@ -1,78 +1,43 @@
 <div class="main-content">
-        <section class="section">
-          <div class="section-header">
-            <h1>Data Toko Modern</h1>
-          </div>
-
-          <div class="section-body">
-                <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-body table-responsive">
-          <a href="https://videotron.digitaldev.id/tokoModern/create" class="btn btn-info mb-2">Tambah Data</a>
-                              <table class="table table-hover datatable">
-            <thead>
-              <tr>
-                
-                <th>Nama Usaha</th>
-                <th>No. Izin Usaha</th>
-                <th>Kelurahan</th>
-                <th>Kecamatan</th>
-                <th>Koordinat</th>
-                
-                <th style="width: 55px">action</th>
-              </tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                    
-                    <td>INDOMARET DIPONEGORO</td>
-                    <td>503/IUTM-023/PPT.A/2020 29 September 2020</td>
-                    <td>Pasiran</td>
-                    <td>Singkawang Barat</td>
-                    <td>0.900740, 108.982284</td>
-                    
-                    <td>
-                        <a href="https://videotron.digitaldev.id/tokoModern/1/edit" class="btn btn-icon btn-sm btn-warning"><i class="fas fa-edit"></i></a>
-                        <a href="https://videotron.digitaldev.id/tokoModern/1/delete" class="btn btn-icon btn-sm btn-danger"><i class="fas fa-trash"></i></a>
-                    </td>
-                </tr>
-              
-                <tr>
-                    
-                    <td>ALFAMART ALIANYANG SINGKAWANG</td>
-                    <td>503/IUTM-015/PPT.A/2020 19 Mei 2020</td>
-                    <td>Melayu</td>
-                    <td>Singkawang Barat</td>
-                    <td>0.910592, 108.980390</td>
-                    
-                    <td>
-                        <a href="https://videotron.digitaldev.id/tokoModern/3/edit" class="btn btn-icon btn-sm btn-warning"><i class="fas fa-edit"></i></a>
-                        <a href="https://videotron.digitaldev.id/tokoModern/3/delete" class="btn btn-icon btn-sm btn-danger"><i class="fas fa-trash"></i></a>
-                    </td>
-                </tr>
-              
-                <tr>
-                    
-                    <td>ALFAMART KAMPUNG JAWA</td>
-                    <td>503/IUTM-011/PPT.A/2020 19 Mei 2020</td>
-                    <td>Jawa</td>
-                    <td>Singkawang Tengah</td>
-                    <td>0.915659, 108.991329</td>
-                    
-                    <td>
-                        <a href="https://videotron.digitaldev.id/tokoModern/2/edit" class="btn btn-icon btn-sm btn-warning"><i class="fas fa-edit"></i></a>
-                        <a href="https://videotron.digitaldev.id/tokoModern/2/delete" class="btn btn-icon btn-sm btn-danger"><i class="fas fa-trash"></i></a>
-                    </td>
-                </tr>
-                        </tbody>
-          </table>
+    <section class="section">
+        <div class="section-header">
+            <h1>Product data</h1>
         </div>
-      </div>
-    </div>
-  </div>
-          </div>
-        </section>
-      </div>
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body table-responsive">
+                            <a href="product/create" class="btn btn-info mb-2">Add</a>
+                              <table class="table table-hover datatable">
+                                    <thead>
+                                        <tr>
+                                            <th>Product Name</th>
+                                            <th>Price</th>
+                                            <th>Stock</th>
+                                            <th style="width: 100px">action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {{#each data}}
+                                        <tr>
+                                            <td>{{this.name}}</td>
+                                            <td>{{this.price}}</td>
+                                            <td>{{this.stock}}</td>
+                                            <td>
+                                                <a href="https://videotron.digitaldev.id/tokoModern/3/edit" class="btn btn-icon btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                                                <a href="https://videotron.digitaldev.id/tokoModern/3/delete" class="btn btn-icon btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                    {{/each}}
+                            
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </section>
+</div>
 
