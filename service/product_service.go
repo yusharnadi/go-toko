@@ -2,7 +2,6 @@ package service
 
 import (
 	"github.com/yusharnadi/go-toko/entity"
-	"github.com/yusharnadi/go-toko/model"
 	"github.com/yusharnadi/go-toko/repository"
 )
 
@@ -11,23 +10,20 @@ type productService struct {
 }
 
 type ProductService interface {
-	Insert(CreateProductRequest *model.CreateProductRequest) error
+	Insert(product *entity.Product) error
 	GetAll() (*[]entity.Product, error)
 	FindId(id int) (entity.Product, error)
+	Update(product *entity.Product, id int) error
 }
 
 func NewProductService(productRepository repository.ProductRepository) ProductService {
 	return &productService{productRepository}
 }
 
-func (s *productService) Insert(CreateProductRequest *model.CreateProductRequest) error {
-	product := entity.Product{
-		Name:  CreateProductRequest.Name,
-		Price: CreateProductRequest.Price,
-		Stock: CreateProductRequest.Stock,
-	}
+func (s *productService) Insert(product *entity.Product) error {
 
-	err := s.productRepository.Insert(&product)
+	err := s.productRepository.Insert(product)
+
 	return err
 }
 
@@ -39,6 +35,12 @@ func (s *productService) GetAll() (*[]entity.Product, error) {
 
 func (s *productService) FindId(id int) (entity.Product, error) {
 	data, err := s.productRepository.FindId(id)
-	return data, err
 
+	return data, err
+}
+
+func (s *productService) Update(product *entity.Product, id int) error {
+	err := s.productRepository.Update(product, id)
+
+	return err
 }

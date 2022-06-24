@@ -9,6 +9,7 @@ type ProductRepository interface {
 	Insert(product *entity.Product) error
 	GetAll() (*[]entity.Product, error)
 	FindId(id int) (entity.Product, error)
+	Update(product *entity.Product, id int) error
 }
 
 type productRepository struct {
@@ -34,4 +35,10 @@ func (r *productRepository) FindId(id int) (entity.Product, error) {
 	var product entity.Product
 	err := r.db.Find(&product, id)
 	return product, err.Error
+}
+
+func (r *productRepository) Update(product *entity.Product, id int) error {
+	var Product *entity.Product
+	err := r.db.Model(&Product).Where("id", id).Updates(product)
+	return err.Error
 }

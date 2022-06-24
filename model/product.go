@@ -1,5 +1,7 @@
 package model
 
+import "time"
+
 type CreateProductRequest struct {
 	Name  string `form:"name"`
 	Price int    `form:"price"`
@@ -11,6 +13,13 @@ type CreateProductResponse struct {
 	Name  string `json:"name"`
 	Price int    `json:"price"`
 	Stock int    `json:"stock"`
+}
+
+type UpdateProductRequest struct {
+	Name      string `form:"name"`
+	Price     int    `form:"price"`
+	Stock     int    `form:"stock"`
+	UpdatedAt time.Time
 }
 
 type GetProductResponse struct {
