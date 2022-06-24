@@ -1,0 +1,41 @@
+<div class="main-content">
+  <section class="section">
+    <div class="section-header">
+      <h1>Product data</h1>
+    </div>
+    <div class="section-body">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body table-responsive">
+              <a href="product/create" class="btn btn-info mb-2">Add</a>
+              <table class="table table-hover datatable">
+                <thead>
+                  <tr>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th style="width: 100px">action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{range .data}}
+                  <tr>
+                    <td>{{.Name}}</td>
+                    <td>{{.Price}}</td>
+                    <td>{{.Stock}}</td>
+                    <td>
+                      <a href="/product/{{.ID}}" class="btn btn-icon btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                      <a href="https://videotron.digitaldev.id/tokoModern/3/delete" class="btn btn-icon btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                    </td>
+                  </tr>
+                  {{end}}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
