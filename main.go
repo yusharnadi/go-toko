@@ -4,7 +4,7 @@ import (
 	"log"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/template/handlebars"
+	"github.com/gofiber/template/html"
 	"github.com/yusharnadi/go-toko/controller"
 	"github.com/yusharnadi/go-toko/repository"
 	"github.com/yusharnadi/go-toko/service"
@@ -21,7 +21,12 @@ func main() {
 	}
 
 	// Create a new engine
-	engine := handlebars.New("./views", ".hbs")
+	engine := html.New("./views", ".html")
+	// Reload the templates on each render, good for development
+	engine.Reload(true) // Optional. Default: false
+
+	// Debug will print each template that is parsed, good for debugging
+	engine.Debug(true) // Optional. Default: false
 
 	// Setup repository
 	productRepository := repository.NewProductRepository(db)
