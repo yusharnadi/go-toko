@@ -14,6 +14,7 @@ type ProductService interface {
 	GetAll() (*[]entity.Product, error)
 	FindId(id int) (entity.Product, error)
 	Update(product *entity.Product, id int) error
+	Delete(id int) error
 }
 
 func NewProductService(productRepository repository.ProductRepository) ProductService {
@@ -43,4 +44,8 @@ func (s *productService) Update(product *entity.Product, id int) error {
 	err := s.productRepository.Update(product, id)
 
 	return err
+}
+
+func (s *productService) Delete(id int) error {
+	return s.productRepository.Delete(id)
 }

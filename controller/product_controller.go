@@ -21,6 +21,7 @@ func (controller *ProductController) Route(app *fiber.App) {
 	app.Get("/product/create", controller.Create)
 	app.Get("/product/:id", controller.Edit)
 	app.Post("/product/:id/update", controller.Update)
+	app.Get("/product/:id/delete", controller.Delete)
 	app.Post("/product/store", controller.Store)
 	app.Get("/product/", controller.GetAll)
 }
@@ -109,4 +110,16 @@ func (controller *ProductController) Update(c *fiber.Ctx) error {
 
 	return c.Redirect("/product")
 
+}
+
+func (controller *ProductController) Delete(c *fiber.Ctx) error {
+	id, err := c.ParamsInt("id")
+	if err != nil {
+		return c.SendStatus(404)
+	}
+
+	if errDel := controller.productService.Delete(id); errDel != nil {
+		return errDel
+	}
+	return c.Redirect("/product")
 }
