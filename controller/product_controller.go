@@ -18,6 +18,7 @@ func NewProductController(productService service.ProductService) ProductControll
 }
 
 func (controller *ProductController) Route(app *fiber.App) {
+	app.Get("/", controller.Home)
 	app.Get("/product/create", controller.Create)
 	app.Get("/product/:id", controller.Edit)
 	app.Post("/product/:id/update", controller.Update)
@@ -30,6 +31,10 @@ func (controller *ProductController) Create(c *fiber.Ctx) error {
 	return c.Render("product.create", nil, "layouts/main")
 }
 
+func (controller *ProductController) Home(c *fiber.Ctx) error {
+	return c.Render("home", nil, "layouts/main")
+}
+
 func (controller *ProductController) Store(c *fiber.Ctx) error {
 
 	var newProduct model.CreateProductRequest
@@ -37,6 +42,12 @@ func (controller *ProductController) Store(c *fiber.Ctx) error {
 	err := c.BodyParser(&newProduct)
 	if err != nil {
 		return err
+	}
+
+	errors := model.ValidateStruct(newProduct)
+	if errors != nil {
+		return c.Render("product.create", fiber.Map{"error": errors}, "layouts/main")
+
 	}
 	product := entity.Product{
 		Name:  newProduct.Name,
