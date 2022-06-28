@@ -2,9 +2,11 @@ package main
 
 import (
 	"log"
+	"os"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/template/html"
+	"github.com/joho/godotenv"
 	"github.com/yusharnadi/go-toko/controller"
 	"github.com/yusharnadi/go-toko/repository"
 	"github.com/yusharnadi/go-toko/service"
@@ -14,7 +16,14 @@ import (
 
 func main() {
 
-	dsn := "root:@tcp(127.0.0.1:3306)/go_toko?charset=utf8mb4&parseTime=True&loc=Local"
+	if errCfg := godotenv.Load(); errCfg != nil {
+		log.Fatal(errCfg)
+	}
+
+	db_user := os.Getenv("DB_USER")
+	db_pass := os.Getenv("DB_PASS")
+
+	dsn := db_user + ":" + db_pass + "@tcp(127.0.0.1:3306)/go_toko?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatal(err.Error())
