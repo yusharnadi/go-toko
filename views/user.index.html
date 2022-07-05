@@ -1,0 +1,39 @@
+<div class="main-content">
+  <section class="section">
+    <div class="section-header">
+      <h1>User data</h1>
+    </div>
+    <div class="section-body">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body table-responsive">
+              <a href="user/create" class="btn btn-info mb-2">Add</a>
+              <table class="table table-hover datatable">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th style="width: 100px">action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{range .user}}
+                  <tr>
+                    <td>{{.Name}}</td>
+                    <td>{{.Email}}</td>
+                    <td>
+                      <a href="/user/{{.ID}}" class="btn btn-icon btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                      <a href="/user/{{.ID}}/delete" class="btn btn-icon btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                    </td>
+                  </tr>
+                  {{end}}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
