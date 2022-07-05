@@ -39,12 +39,15 @@ func main() {
 
 	// Setup repository
 	productRepository := repository.NewProductRepository(db)
+	userRepository := repository.NewUserRepository(db)
 
 	//setup Service
 	productService := service.NewProductService(productRepository)
+	userService := service.NewUserService(userRepository)
 
 	//setup Controller
 	productController := controller.NewProductController(productService)
+	userController := controller.NewUserController(userService)
 
 	// Setup Fiber
 	app := fiber.New(fiber.Config{
@@ -54,6 +57,7 @@ func main() {
 
 	// Setup Routing
 	productController.Route(app)
+	userController.Route(app)
 
 	// Start App
 	errors := app.Listen(":3000")
