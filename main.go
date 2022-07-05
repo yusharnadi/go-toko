@@ -58,6 +58,7 @@ func main() {
 	// Setup Routing
 	productController.Route(app)
 	userController.Route(app)
+	controller.Route(app)
 
 	// Start App
 	errors := app.Listen(":3000")
