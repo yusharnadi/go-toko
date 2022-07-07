@@ -11,6 +11,7 @@ type authRepository struct {
 
 type AuthRepository interface {
 	FindByEmail(email string, user *entity.User) (*entity.User, error)
+	Insert(user *entity.User) error
 }
 
 func NewAuthRepository(db *gorm.DB) AuthRepository {
@@ -22,4 +23,9 @@ func (r *authRepository) FindByEmail(email string, user *entity.User) (*entity.U
 	err := r.db.Where("email", email).Find(&user).Error
 
 	return user, err
+}
+
+func (r *authRepository) Insert(user *entity.User) error {
+	return r.db.Create(&user).Error
+
 }

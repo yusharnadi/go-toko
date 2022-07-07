@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport" />
-    <title>Login</title>
+    <title>Register</title>
     <!-- <link rel="shortcut icon" href="https://retribusi.digitaldev.id/assets/img/favicon.ico" /> -->
 
     <!-- General CSS Files -->
@@ -36,17 +36,21 @@
               </div>
 
               <div class="card card-primary">
-                <div class="card-header"><h4>Users Login</h4></div>
+                <div class="card-header"><h4>Users Register</h4></div>
 
                 <div class="card-body">
-                  <form method="POST" action="/auth/login" class="needs-validation" novalidate="">
+                  <form method="POST" action="/auth/register" class="needs-validation" novalidate="">
                     <input type="hidden" name="_token" value="2peLfBB4sDJiXltgXLOcEI3mNh4cLxshiSQESvRw" />
+                    <div class="form-group">
+                      <label for="name">Name</label>
+                      <input id="name" type="text" class="form-control" name="name" tabindex="1" required autofocus />
+                      <div class="invalid-feedback">Please fill in your name</div>
+                    </div>
                     <div class="form-group">
                       <label for="email">Email</label>
                       <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus />
                       <div class="invalid-feedback">Please fill in your email</div>
                     </div>
-
                     <div class="form-group">
                       <div class="d-block">
                         <label for="password" class="control-label">Password</label>
@@ -59,7 +63,7 @@
                       <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">Login</button>
                     </div>
                     <div class="mt-5 text-muted text-center">
-                      <a href="/auth/register">Dont have account ? register </a>
+                      <a href="/auth/login">Already have account ? Login </a>
                     </div>
                   </form>
                 </div>
