@@ -1,9 +1,11 @@
 package controller
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/session"
 	"github.com/yusharnadi/go-toko/entity"
 	"github.com/yusharnadi/go-toko/model"
 	"github.com/yusharnadi/go-toko/service"
@@ -11,10 +13,11 @@ import (
 
 type ProductController struct {
 	productService service.ProductService
+	store          *session.Store
 }
 
-func NewProductController(productService service.ProductService) ProductController {
-	return ProductController{productService}
+func NewProductController(productService service.ProductService, store *session.Store) ProductController {
+	return ProductController{productService, store}
 }
 
 func (controller *ProductController) Route(app *fiber.App) {
@@ -32,7 +35,14 @@ func (controller *ProductController) Create(c *fiber.Ctx) error {
 }
 
 func (controller *ProductController) Home(c *fiber.Ctx) error {
-	return c.Render("home", nil, "layouts/main")
+	sess, err := controller.store.Get(c)
+	if err != nil {
+		fmt.Println(err)
+	}
+	if sess.Get("secret") == nil {
+		return c.Redirect("auth/login")
+	}
+	return c.Render("home", fiber.Map{"session": sess.Get("email")}, "layouts/main")
 }
 
 func (controller *ProductController) Store(c *fiber.Ctx) error {
